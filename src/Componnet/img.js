@@ -1,5 +1,5 @@
 import React from "react";
-import './static/css/main.css';
+import '../static/css/main.css';
 
 class Img extends React.Component {
     render() {
