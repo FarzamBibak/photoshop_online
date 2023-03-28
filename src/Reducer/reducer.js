@@ -1,3 +1,16 @@
+// reducer.js
+
+import img1 from '../static/img/post1.jpg'
+import img2 from '../static/img/post2.jpg'
+import img3 from '../static/img/post3.jpg'
+import img4 from '../static/img/post4.png'
+import img5 from '../static/img/post5.jpg'
+import img6 from '../static/img/post6.jpg'
+import img7 from '../static/img/post7.png'
+import img8 from '../static/img/post8.jpg'
+import img9 from '../static/img/post9.jpeg'
+
+
 const initialStates = {
     paintColor: 'black',
     paintLineWidth: '1',
@@ -27,7 +40,9 @@ const initialStates = {
     textPositionX: '',
     textPositionY: '',
     panelDisplay: 0,
-    Image_src : ''
+    Image_src: img1,
+    bodyWidth: '',
+    bodyHeight: '',
 }
 
 export const settingsReducer = (state = initialStates, action) => {
@@ -153,6 +168,14 @@ export const settingsReducer = (state = initialStates, action) => {
 
                     panelDisplay: 0,
                 }
+            }
+
+        case "bodySize":
+            return {
+                ...state,
+                
+                bodyWidth: action.payload.bodyWidth,
+                bodyHeight: action.payload.bodyHeight,
             }
 
         default:

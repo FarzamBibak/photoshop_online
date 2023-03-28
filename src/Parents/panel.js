@@ -1,3 +1,5 @@
+// panel.js
+
 import React from "react";
 import Buttons from "../Componnet/buttons";
 import '../static/css/main.css';

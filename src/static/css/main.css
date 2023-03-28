@@ -22,9 +22,7 @@ head,
     height: 100%;
 }
 
-.Img {
+.imgCanvas {
     margin-top: 5%;
     margin-right: 5%;
-    background-color: black;
-    height: -webkit-fill-available;
 }

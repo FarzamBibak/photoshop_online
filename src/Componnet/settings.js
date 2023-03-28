@@ -1,3 +1,5 @@
+// settings.js
+
 import React from "react";
 import '../static/css/main.css';
 
