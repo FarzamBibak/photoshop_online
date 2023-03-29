@@ -1,0 +1,43 @@
+.panel {
+    background-color: purple;
+    height: fit-content;
+    width: 600px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    position: fixed;
+    bottom: 0px;
+    left: 150px;
+}
+
+.doneButton {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    float: right;
+    width: 50px;
+    height: 20px;
+}
+
+.closeButton {
+    position: absolute;
+    bottom: 5px;
+    right: 60px;
+    float: right;
+    width: 50px;
+    height: 20px;
+}
+
+.information {
+    display: flex;
+    flex-flow: nowrap row;
+}
+
+.input {
+    height: 20px;
+    margin-left: 5px;
+    margin-top: 20px;
+}
+
+.buttons {
+    height: 30px;
+}
