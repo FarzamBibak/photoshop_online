@@ -25,4 +25,5 @@ head,
 .imgCanvas {
     margin-top: 5%;
     margin-right: 5%;
+    float: right;
 }

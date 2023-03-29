@@ -9,7 +9,7 @@ import img6 from '../static/img/post6.jpg'
 import img7 from '../static/img/post7.png'
 import img8 from '../static/img/post8.jpg'
 import img9 from '../static/img/post9.jpeg'
-
+import img10 from '../static/img/post10.jpg'
 
 const initialStates = {
     paintColor: 'black',
@@ -40,11 +40,28 @@ const initialStates = {
     textPositionX: '',
     textPositionY: '',
     panelDisplay: 0,
-    Image_src: img1,
+    Image_src: img10,
     bodyWidth: '',
     bodyHeight: '',
+    imgWidth: '',
+    imgHeight: '',
 }
 
+function setDisplaySettings(state, display) {
+    if (display === 1) {
+        return {
+            ...state,
+
+            panelDisplay: 1,
+        }
+    } else if (display === 0) {
+        return {
+            ...state,
+
+            panelDisplay: 0,
+        }
+    }
+}
 export const settingsReducer = (state = initialStates, action) => {
     switch (action.type) {
         case "paintSettings":
@@ -156,26 +173,22 @@ export const settingsReducer = (state = initialStates, action) => {
         //     }
 
         case "displayPanel":
-            if (action.payload.display == 1) {
-                return {
-                    ...state,
-
-                    panelDisplay: 1,
-                }
-            } else if (action.payload.display == 0) {
-                return {
-                    ...state,
-
-                    panelDisplay: 0,
-                }
-            }
+            return setDisplaySettings(state, action.payload.display)
 
         case "bodySize":
             return {
                 ...state,
-                
+
                 bodyWidth: action.payload.bodyWidth,
                 bodyHeight: action.payload.bodyHeight,
+            }
+
+        case "imgSize":
+            return {
+                ...state,
+
+                imgWidth: action.payload.imgWidth,
+                imgHeight: action.payload.imgHeight,
             }
 
         default:

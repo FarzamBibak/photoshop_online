@@ -2,6 +2,7 @@
 
 import React from "react";
 import { connect } from 'react-redux';
+import imgSize from "../Actions/imgSize";
 import '../static/css/main.css';
 
 class Img extends React.Component {
@@ -9,11 +10,6 @@ class Img extends React.Component {
         super(props);
 
         this.myCanvas = React.createRef();
-
-        this.state = {
-            imgWidth: '',
-            imgHeight: '',
-        }
 
         this.componentDidMount = this.componentDidMount.bind(this)
         this.updateCanvas = this.updateCanvas.bind(this)
@@ -31,26 +27,22 @@ class Img extends React.Component {
         image.src =
             this.props.Image_src;
 
-        this.setState({
-            "imgWidth": image.width,
-            "imgHeight": image.height,
-        });
-        console.log('state width: ', this.state.imgWidth, 'state height: ', this.state.imgHeight);
+        var width = image.width * 2;
+        var height = image.height * 2;
 
-        image.onload = () => {
-            ctx.drawImage(image, 0, 0, this.state.imgWidth / 10, this.state.imgHeight / 10);
-        };
+        this.props.dispatch(imgSize(width, height));
+
+        image.onload = function () {
+            ctx.drawImage(image, 0, 0, image.width * 2, image.height * 2)
+        }
     }
 
     render() {
-        console.log('body width: ', this.props.bodyWidth, 'body height: ', this.props.bodyHeight);
-        console.log('state width: ', this.state.imgWidth, 'state height: ', this.state.imgHeight);
-
         return (
             <canvas
                 ref={this.myCanvas}
-                width={this.state.imgWidth}
-                height={this.state.imgHeight}
+                width={this.props.imgWidth}
+                height={this.props.imgHeight}
                 className="imgCanvas" />
         )
     }
@@ -61,6 +53,8 @@ function mapStateToProps(state) {
         Image_src: state.Image_src,
         bodyWidth: state.bodyWidth,
         bodyHeight: state.bodyHeight,
+        imgWidth: state.imgWidth,
+        imgHeight: state.imgHeight,
     }
 }
 

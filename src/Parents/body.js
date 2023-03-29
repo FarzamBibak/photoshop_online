@@ -3,7 +3,7 @@
 import React from "react";
 import Settings from '../Componnet/settings';
 import Img from "../Componnet/img";
-import size from '../Actions/bodySize';
+import bodySize from '../Actions/bodySize';
 import { connect } from 'react-redux';
 import '../static/css/main.css';
 
@@ -20,7 +20,7 @@ class Body extends React.Component {
         let height = body.current.clientHeight
         let width = body.current.clientWidth
 
-        this.props.dispatch(size(width, height))
+        this.props.dispatch(bodySize(width, height))
     }
 
     render() {

@@ -1,6 +1,6 @@
 // bodySize.js
 
-function size(w, h) {
+function bodySize(w, h) {
     return ({
         type: "bodySize",
         payload: {
@@ -10,4 +10,4 @@ function size(w, h) {
     })
 }
 
-export default size;
+export default bodySize;
