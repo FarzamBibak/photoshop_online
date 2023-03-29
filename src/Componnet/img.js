@@ -9,41 +9,40 @@ class Img extends React.Component {
     constructor(props) {
         super(props);
 
-        this.myCanvas = React.createRef();
+        this.canvasRef = React.createRef();
+        this.imgRef = React.createRef();
 
-        this.componentDidMount = this.componentDidMount.bind(this)
-        this.updateCanvas = this.updateCanvas.bind(this)
+        this.onloadImg = this.onloadImg.bind(this)
     }
 
-    componentDidMount() {
-        this.updateCanvas();
-    }
+    onloadImg(){
+        var width = this.imgRef.current.width
+        var height = this.imgRef.current.height
 
-    updateCanvas() {
-        const canvas = this.myCanvas.current;
+        this.props.dispatch(imgSize(width, height));
+        
+        const canvas = this.canvasRef.current;
         const ctx = canvas.getContext("2d");
 
         const image = new Image();
-        image.src =
-            this.props.Image_src;
-
-        var width = image.width * 2;
-        var height = image.height * 2;
-
-        this.props.dispatch(imgSize(width, height));
-
+        image.src = this.imgRef.current.src;
         image.onload = function () {
-            ctx.drawImage(image, 0, 0, image.width * 2, image.height * 2)
-        }
+            ctx.drawImage(image, 0, 0, image.width, image.height )
+        }    
     }
 
     render() {
         return (
+            <div>
+            <img ref={this.imgRef} src={this.props.Image_src} onLoad={this.onloadImg} style={{display:"none"}}/>
             <canvas
-                ref={this.myCanvas}
+                draggable
+                ref={this.canvasRef}
                 width={this.props.imgWidth}
                 height={this.props.imgHeight}
                 className="imgCanvas" />
+                            </div>
+
         )
     }
 }

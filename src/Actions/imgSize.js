@@ -2,10 +2,12 @@
 
 function imgSize(w, h) {
     return ({
-        type: "imgSize",
-        payload: {
-            imgHeight: h,
-            imgWidth: w,
+        type:
+            "imgSize",
+        payload:
+        {
+            "imgHeight": h,
+            "imgWidth": w,
         }
     })
 }

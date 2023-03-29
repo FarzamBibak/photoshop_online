@@ -2,10 +2,12 @@
 
 function bodySize(w, h) {
     return ({
-        type: "bodySize",
-        payload: {
-            bodyHeight: h,
-            bodyWidth: w,
+        type:
+            "bodySize",
+        payload:
+        {
+            "bodyHeight": h,
+            "bodyWidth": w,
         }
     })
 }

@@ -5,30 +5,71 @@ import Settings from '../Componnet/settings';
 import Img from "../Componnet/img";
 import bodySize from '../Actions/bodySize';
 import { connect } from 'react-redux';
+import srcChanger from "../Actions/srcChanger";
 import '../static/css/main.css';
 
 class Body extends React.Component {
     constructor(props) {
         super(props);
-        this.body = React.createRef();
 
-        this.componentDidMount = this.componentDidMount.bind(this)
+        this.bodyRef = React.createRef();
+        this.inputRef = React.createRef();
+
+        this.componentDidMount =
+            this.componentDidMount.bind(this);
+        this.drop =
+            this.drop.bind(this);
+        this.dragOver =
+            this.dragOver.bind(this);
+    }
+
+    drop(ev) {
+        ev.stopPropagation();
+        ev.preventDefault();
+
+        const fileInput = this.inputRef.current,
+            dT = new DataTransfer();
+
+        dT.items.add
+            (
+                ev.dataTransfer.files[0]
+            );
+        fileInput.files = dT.files;
+
+        const file = fileInput.files[0],
+            reader = new FileReader();
+
+        reader.onloadend = () => {
+            const base64String = reader.result;
+
+            this.props.dispatch
+                (
+                    srcChanger(base64String)
+                )
+        };
+
+        reader.readAsDataURL(file);
+    }
+
+    dragOver(ev) {
+        ev.preventDefault();
     }
 
     componentDidMount() {
-        const body = this.body
-        let height = body.current.clientHeight
-        let width = body.current.clientWidth
+        const body = this.bodyRef,
+
+            width = body.current.clientWidth,
+            height = body.current.clientHeight;
 
         this.props.dispatch(bodySize(width, height))
     }
 
     render() {
-
         return (
-            <div ref={this.body} className="Body">
+            <div ref={this.bodyRef} className="Body" onDrop={this.drop} onDragOver={this.dragOver}>
                 <Img />
                 <Settings />
+                <input ref={this.inputRef} type="file" style={{ display: "none" }} />
             </div>
         )
     }
@@ -38,6 +79,7 @@ function mapStateToProps(state) {
     return {
         bodyWidth: state.bodyWidth,
         bodyHeight: state.bodyHeight,
+        Image_src: state.Image_src,
     }
 }
 

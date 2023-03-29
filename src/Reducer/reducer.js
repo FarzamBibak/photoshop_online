@@ -1,15 +1,5 @@
 // reducer.js
 
-import img1 from '../static/img/post1.jpg'
-import img2 from '../static/img/post2.jpg'
-import img3 from '../static/img/post3.jpg'
-import img4 from '../static/img/post4.png'
-import img5 from '../static/img/post5.jpg'
-import img6 from '../static/img/post6.jpg'
-import img7 from '../static/img/post7.png'
-import img8 from '../static/img/post8.jpg'
-import img9 from '../static/img/post9.jpeg'
-import img10 from '../static/img/post10.jpg'
 
 const initialStates = {
     paintColor: 'black',
@@ -40,7 +30,7 @@ const initialStates = {
     textPositionX: '',
     textPositionY: '',
     panelDisplay: 0,
-    Image_src: img10,
+    Image_src: '',
     bodyWidth: '',
     bodyHeight: '',
     imgWidth: '',
@@ -64,6 +54,13 @@ function setDisplaySettings(state, display) {
 }
 export const settingsReducer = (state = initialStates, action) => {
     switch (action.type) {
+        case "changeSrc":
+            return {
+                ...state,
+
+                Image_src: action.payload.Image_src
+            }
+
         case "paintSettings":
             return {
                 ...state,
