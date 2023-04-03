@@ -4,6 +4,8 @@ import '../static/css/main.css';
 import React from 'react';
 import Body from './body';
 import Panel from './panel'
+import Container from './Container';
+import Menu from './Menu';
 
 class App extends React.Component {
   render() {
@@ -11,6 +13,8 @@ class App extends React.Component {
       <div className='App'>
         <Panel />
         <Body />
+        <Menu/>
+        <Container/>
       </div>
     )
   }
