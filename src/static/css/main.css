@@ -20,10 +20,25 @@ head,
     background-color: rebeccapurple;
     width: 85%;
     height: 100%;
+    overflow: auto;
 }
 
 .imgCanvas {
     margin-top: 5%;
     margin-right: 5%;
     float: right;
+    overflow: auto;
+    overflow-x: scroll;
+}
+
+.zoomOptions {
+    display: flex;
+    flex-flow: row nowrap;
+    position: fixed;
+    bottom: 0px;
+    right: 20px;
+}
+
+.zoomInput{
+    width: 40px;
 }

@@ -3,6 +3,7 @@
 import React from "react";
 import Settings from '../Componnet/settings';
 import Img from "../Componnet/img";
+import Zoom from "../Componnet/zoom";
 import bodySize from '../Actions/bodySize';
 import { connect } from 'react-redux';
 import srcChanger from "../Actions/srcChanger";
@@ -15,12 +16,9 @@ class Body extends React.Component {
         this.bodyRef = React.createRef();
         this.inputRef = React.createRef();
 
-        this.componentDidMount =
-            this.componentDidMount.bind(this);
-        this.drop =
-            this.drop.bind(this);
-        this.dragOver =
-            this.dragOver.bind(this);
+        this.componentDidMount = this.componentDidMount.bind(this);
+        this.drop = this.drop.bind(this);
+        this.dragOver = this.dragOver.bind(this);
     }
 
     drop(ev) {
@@ -69,6 +67,7 @@ class Body extends React.Component {
             <div ref={this.bodyRef} className="Body" onDrop={this.drop} onDragOver={this.dragOver}>
                 <Img />
                 <Settings />
+                <Zoom />
                 <input ref={this.inputRef} type="file" style={{ display: "none" }} />
             </div>
         )
@@ -79,7 +78,6 @@ function mapStateToProps(state) {
     return {
         bodyWidth: state.bodyWidth,
         bodyHeight: state.bodyHeight,
-        Image_src: state.Image_src,
     }
 }
 

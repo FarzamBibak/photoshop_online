@@ -1,13 +1,13 @@
 // bodySize.js
 
-function bodySize(w, h) {
+function bodySize(bW, bH) {
     return ({
         type:
             "bodySize",
         payload:
         {
-            "bodyHeight": h,
-            "bodyWidth": w,
+            "bodyWidth": bW,
+            "bodyHeight": bH,
         }
     })
 }

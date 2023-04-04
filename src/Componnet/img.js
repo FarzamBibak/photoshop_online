@@ -9,39 +9,56 @@ class Img extends React.Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            zoom: this.props.zoomUseValue,
+        }
+
         this.canvasRef = React.createRef();
         this.imgRef = React.createRef();
 
-        this.onloadImg = this.onloadImg.bind(this)
+        this.onloadImg = this.onloadImg.bind(this);
     }
 
-    onloadImg(){
-        var width = this.imgRef.current.width
-        var height = this.imgRef.current.height
+    onloadImg() {
+        const defaultWidth = this.imgRef.current.width,
+            defaultHeight = this.imgRef.current.height;
 
-        this.props.dispatch(imgSize(width, height));
-        
+
+        var zoom = this.props.zoomUseValue,
+
+            image = new Image();
+
+
         const canvas = this.canvasRef.current;
         const ctx = canvas.getContext("2d");
 
-        const image = new Image();
+        this.props.dispatch(imgSize(defaultWidth, defaultHeight));
+
         image.src = this.imgRef.current.src;
+        var w = this.props.imgWidth
+        var h = this.props.imgHeight
+        console.log(w, h)
         image.onload = function () {
-            ctx.drawImage(image, 0, 0, image.width, image.height )
-        }    
+            ctx.drawImage(image, 0, 0, w, h)
+        }
+        console.log(this.canvasRef.current.width)
     }
 
     render() {
         return (
             <div>
-            <img ref={this.imgRef} src={this.props.Image_src} onLoad={this.onloadImg} style={{display:"none"}}/>
-            <canvas
-                draggable
-                ref={this.canvasRef}
-                width={this.props.imgWidth}
-                height={this.props.imgHeight}
-                className="imgCanvas" />
-                            </div>
+                <img
+                    ref={this.imgRef}
+                    src={this.props.Image_src}
+                    onLoad={this.onloadImg}
+                    style={{ display: "none" }}
+                    img-load={this.props.imgLoad} />
+                <canvas
+                    ref={this.canvasRef}
+                    width={this.props.imgWidth}
+                    height={this.props.imgHeight}
+                    className="imgCanvas" />
+            </div>
 
         )
     }
@@ -54,6 +71,8 @@ function mapStateToProps(state) {
         bodyHeight: state.bodyHeight,
         imgWidth: state.imgWidth,
         imgHeight: state.imgHeight,
+        zoomUseValue: state.zoomUseValue,
+        imgLoad: state.imgLoad,
     }
 }
 

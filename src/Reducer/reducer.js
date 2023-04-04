@@ -1,6 +1,5 @@
 // reducer.js
 
-
 const initialStates = {
     paintColor: 'black',
     paintLineWidth: '1',
@@ -33,8 +32,26 @@ const initialStates = {
     Image_src: '',
     bodyWidth: '',
     bodyHeight: '',
-    imgWidth: '',
-    imgHeight: '',
+    imgWidth: 0,
+    imgHeight: 0,
+    zoomShowValue: 100,
+    zoomUseValue: 1,
+    imgLoad: 0,
+}
+
+function ChangeImageSize(state, width, height) {
+    if (state.imgLoad == 0) {
+        return {
+            ...state,
+            imgWidth: width,
+            imgHeight: height,
+            imgLoad: state.imgLoad + 1,
+        }
+    } else {
+        return {
+            ...state
+        }
+    }
 }
 
 function setDisplaySettings(state, display) {
@@ -52,13 +69,37 @@ function setDisplaySettings(state, display) {
         }
     }
 }
+
+// function checkCounter(state, counter, action) {
+//     if (counter == 0) {
+//         return {
+//             ...state,
+
+//             imgWidth: action.payload.imgWidth,
+//             imgHeight: action.payload.imgHeight,
+//             canvas: action.payload.canvas,
+
+//             counter: 1,
+//         }
+//     } else if (counter == 1) {
+//         return {
+//             ...state,
+
+//             canvas: action.payload.canvas,
+
+//             imgLoad: state.imgLoad + 1,
+//         }
+//     }
+// }
+
 export const settingsReducer = (state = initialStates, action) => {
     switch (action.type) {
         case "changeSrc":
             return {
                 ...state,
 
-                Image_src: action.payload.Image_src
+                Image_src: action.payload.Image_src,
+                counter: 0,
             }
 
         case "paintSettings":
@@ -96,45 +137,45 @@ export const settingsReducer = (state = initialStates, action) => {
                 moveY2: action.payload.y2,
             }
 
-        case "cropSettings":
-            let touchTop = 0,
-                touchDown = 0,
-                touchLeft = 0,
-                touchRight = 0
+        // case "cropSettings":
+        //     let touchTop = 0,
+        //         touchDown = 0,
+        //         touchLeft = 0,
+        //         touchRight = 0
 
-            if (action.payload.yTop) {
-                touchTop = 1
-            }
-            else if (action.payload.yDown) {
-                touchDown = 1
-            }
-            else if (action.payload.xLeft) {
-                touchLeft = 1
-            }
-            else if (action.payload.xRight) {
-                touchRight = 1
-            }
+        //     if (action.payload.yTop) {
+        //         touchTop = 1
+        //     }
+        //     else if (action.payload.yDown) {
+        //         touchDown = 1
+        //     }
+        //     else if (action.payload.xLeft) {
+        //         touchLeft = 1
+        //     }
+        //     else if (action.payload.xRight) {
+        //         touchRight = 1
+        //     }
 
-            return {
-                ...state,
+        //     return {
+        //         ...state,
 
-                isTouchedTopCrop: touchTop,
-                isTouchedDownCrop: touchDown,
-                isTouchedLeftCrop: touchLeft,
-                isTouchedRightCrop: touchRight,
+        //         isTouchedTopCrop: touchTop,
+        //         isTouchedDownCrop: touchDown,
+        //         isTouchedLeftCrop: touchLeft,
+        //         isTouchedRightCrop: touchRight,
 
-                yTopCrop: action.payload.yTop,
-                yDownCrop: action.payload.yDown,
-                xLeftCrop: action.payload.xLeft,
-                xRightCrop: action.payload.xRight,
-            }
+        //         yTopCrop: action.payload.yTop,
+        //         yDownCrop: action.payload.yDown,
+        //         xLeftCrop: action.payload.xLeft,
+        //         xRightCrop: action.payload.xRight,
+        //     }
 
-        case "scaleSettings":
-            return {
-                ...state,
+        // case "scaleSettings":
+        //     return {
+        //         ...state,
 
-                scaleRatio: action.payload.ratio,
-            }
+        //         scaleRatio: action.payload.ratio,
+        //     }
 
         case "filterImageSettings":
             return {
@@ -181,11 +222,16 @@ export const settingsReducer = (state = initialStates, action) => {
             }
 
         case "imgSize":
+            return ChangeImageSize(state, action.payload.imgWidth, action.payload.imgHeight)
+
+
+        case "zoomValue":
             return {
                 ...state,
 
+                zoomShowValue: action.payload.showValue,
+                zoomUseValue: action.payload.useValue,
                 imgWidth: action.payload.imgWidth,
-                imgHeight: action.payload.imgHeight,
             }
 
         default:
