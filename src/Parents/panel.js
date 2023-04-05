@@ -9,6 +9,7 @@ class Panel extends React.Component {
         return(
             <div className="Panel">
                 <Buttons />
+
             </div>
         )
     }

@@ -13,3 +13,4 @@ function imgSize(w, h) {
 }
 
 export default imgSize;
+

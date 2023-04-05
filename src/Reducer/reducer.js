@@ -1,5 +1,7 @@
 // reducer.js
 
+import { act } from "react-dom/test-utils"
+
 
 const initialStates = {
     paintColor: 'black',
@@ -23,7 +25,7 @@ const initialStates = {
     xRightCrop: '',
     xLeftCrop: '',
     scaleRatio: 1,
-    canvasStyle: '',
+    canvasStyle: "test",
     rotateAngle: '',
     textFont: '',
     textSize: 12,
@@ -35,6 +37,8 @@ const initialStates = {
     bodyHeight: '',
     imgWidth: '',
     imgHeight: '',
+    settingType: '',
+    ctx: '',
 }
 
 function setDisplaySettings(state, display) {
@@ -54,6 +58,18 @@ function setDisplaySettings(state, display) {
 }
 export const settingsReducer = (state = initialStates, action) => {
     switch (action.type) {
+
+        case "setCtx":
+            return {
+                ... state,
+                ctx:action.payload.ctx
+            }
+
+        case "setSettingType":
+            return {
+                ... state, 
+                settingType :action.payload.settingType
+            }
         case "changeSrc":
             return {
                 ...state,
@@ -140,14 +156,14 @@ export const settingsReducer = (state = initialStates, action) => {
             return {
                 ...state,
 
-                canvasStyle: action.payload.css,
+                canvasStyle: action.payload,
             }
 
-        case "rotateSettings":
+        case " rotateSettings ":
             return {
                 ...state,
 
-                rotateAngle: action.payload.angle,
+                rotateAngle: action.payload.transform,
             }
 
         case "textSettings":
@@ -192,3 +208,8 @@ export const settingsReducer = (state = initialStates, action) => {
             return initialStates;
     }
 }
+
+
+
+
+export default setDisplaySettings;

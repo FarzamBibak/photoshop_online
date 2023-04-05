@@ -15,6 +15,7 @@ class Body extends React.Component {
         this.bodyRef = React.createRef();
         this.inputRef = React.createRef();
 
+
         this.componentDidMount =
             this.componentDidMount.bind(this);
         this.drop =
@@ -69,6 +70,7 @@ class Body extends React.Component {
             <div ref={this.bodyRef} className="Body" onDrop={this.drop} onDragOver={this.dragOver}>
                 <Img />
                 <Settings />
+
                 <input ref={this.inputRef} type="file" style={{ display: "none" }} />
             </div>
         )

@@ -3,7 +3,9 @@
 import React from "react";
 import { connect } from 'react-redux';
 import imgSize from "../Actions/imgSize";
+import ctxText from "../Actions/settingCTX";
 import '../static/css/main.css';
+
 
 class Img extends React.Component {
     constructor(props) {
@@ -11,6 +13,7 @@ class Img extends React.Component {
 
         this.canvasRef = React.createRef();
         this.imgRef = React.createRef();
+        this.canvasStyleRef = React.createRef();
 
         this.onloadImg = this.onloadImg.bind(this)
     }
@@ -26,17 +29,29 @@ class Img extends React.Component {
 
         const image = new Image();
         image.src = this.imgRef.current.src;
+        console.log(ctx)
+        this.props.dispatch(ctxText(ctx))
         image.onload = function () {
-            ctx.drawImage(image, 0, 0, image.width, image.height )
+        ctx.drawImage(image, 0, 0, image.width, image.height )
+        
+       // ctx.fillText("t", 100, 50, 14);
+
         }    
     }
 
+/*
+    rotateAngle: '',
+    textFont: '',
+    textSize: 12,
+    textPositionX: '',
+    textPositionY: '',
+    panelDisplay: 0,
+*/
     render() {
         return (
             <div>
             <img ref={this.imgRef} src={this.props.Image_src} onLoad={this.onloadImg} style={{display:"none"}}/>
-            <canvas
-                draggable
+            <canvas style= {{filter: this.props.canvasStyle.filter , transform:this.props.rotateAngle.transform}}
                 ref={this.canvasRef}
                 width={this.props.imgWidth}
                 height={this.props.imgHeight}
@@ -54,6 +69,8 @@ function mapStateToProps(state) {
         bodyHeight: state.bodyHeight,
         imgWidth: state.imgWidth,
         imgHeight: state.imgHeight,
+        canvasStyle: state.canvasStyle,
+        rotateAngle: state.rotateAngle     
     }
 }
 
