@@ -47,11 +47,11 @@ class Body extends React.Component {
         };
 
         reader.readAsDataURL(file);
-    }
+    };
 
     dragOver(ev) {
         ev.preventDefault();
-    }
+    };
 
     componentDidMount() {
         const body = this.bodyRef,
@@ -60,7 +60,7 @@ class Body extends React.Component {
             height = body.current.clientHeight;
 
         this.props.dispatch(bodySize(width, height))
-    }
+    };
 
     render() {
         return (
@@ -75,10 +75,7 @@ class Body extends React.Component {
 }
 
 function mapStateToProps(state) {
-    return {
-        bodyWidth: state.bodyWidth,
-        bodyHeight: state.bodyHeight,
-    }
+    return state;
 }
 
 export default connect(mapStateToProps)(Body);

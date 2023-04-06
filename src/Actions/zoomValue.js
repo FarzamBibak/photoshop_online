@@ -1,6 +1,6 @@
 // zoomValue.js
 
-function zoomValue(show, use, width) {
+function zoomValue(show, use) {
     return ({
         type:
             "zoomValue",
@@ -8,7 +8,6 @@ function zoomValue(show, use, width) {
         {
             "showValue": show,
             "useValue": use,
-            "imgWidth": width,
         }
     })
 }

@@ -1,13 +1,13 @@
 // imgSize.js
 
-function imgSize(w, h) {
+function imgSize(defaultWidth, defaultHeight) {
     return ({
         type:
             "imgSize",
         payload:
         {
-            "imgHeight": h,
-            "imgWidth": w,
+            "imgWidthDefault": defaultWidth,
+            "imgHeightDefault": defaultHeight,
         }
     })
 }

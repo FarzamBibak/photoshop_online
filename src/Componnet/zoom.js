@@ -21,49 +21,45 @@ class Zoom extends React.Component {
     }
 
     zoomIncrease() {
-        this.setState({
-            zoomValue: this.state.zoomValue + 25
-        })
-
-        var zoomShow = parseInt(this.inputRef.current.value),
-            zoomUse = zoomShow * 0.01,
-            imgWidth = this.props.imgWidth;
-
-        imgWidth = parseInt(imgWidth) * parseInt(zoomUse)
-        console.log(zoomUse)
-        this.props.dispatch(zoomValue(zoomShow, zoomUse, imgWidth));
-    }
-
-    zoomDecrease() {
-        this.setState({
-            zoomValue: this.state.zoomValue - 25
-        })
-
-        var zoomShow = parseInt(this.inputRef.current.value),
-            zoomUse = zoomShow * 0.01,
-            imgWidth = this.props.imgWidth;
-
-        imgWidth = parseInt(imgWidth) * parseInt(zoomUse)
-        console.log(zoomUse)
-        this.props.dispatch(zoomValue(zoomShow, zoomUse, imgWidth));
-    }
-
-    changeValue() {
-        var zoomShow = parseInt(this.inputRef.current.value),
-            zoomUse = zoomShow * 0.01,
-            imgWidth = this.props.imgWidth;
-
-        console.log(zoomUse)
+        var zoomShow = parseFloat(this.inputRef.current.value) + 25,
+            zoomUse = zoomShow * 0.01;
 
         this.setState({
             zoomValue: zoomShow
         })
 
+        console.log(zoomUse);
+
+        this.props.dispatch(zoomValue(zoomShow, zoomUse));
+    }
+
+    zoomDecrease() {
+        var zoomShow = parseFloat(this.inputRef.current.value) - 25,
+            zoomUse = zoomShow * 0.01;
+
+        this.setState({
+            zoomValue: zoomShow
+        })
+
+        console.log(zoomUse);
+
+        this.props.dispatch(zoomValue(zoomShow, zoomUse));
+    }
+
+    changeValue() {
+        var zoomShow = parseFloat(this.inputRef.current.value),
+            zoomUse = zoomShow * 0.01;
+
+        this.setState({
+            zoomValue: zoomShow
+        });
+
+        console.log(zoomUse);
+
         this.props.dispatch(zoomValue(zoomShow, zoomUse));
     }
 
     render() {
-
         return (
             <div className="zoomOptions">
                 <button
@@ -92,7 +88,13 @@ class Zoom extends React.Component {
 function mapStateToProps(state) {
     return {
         zoomShowValue: state.zoomShowValue,
+        zoomUseValue: state.zoomUseValue,
+        canvas: state.canvas,
+        canvasWidth: state.canvasWidth,
+        canvasHeight: state.canvasHeight,
+        context: state.context,
         imgWidth: state.imgWidth,
+        imgHeight: state.imgHeight,
     }
 }
 
