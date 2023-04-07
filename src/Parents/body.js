@@ -1,10 +1,10 @@
 // body.js
 
 import React from "react";
-import Settings from '../Componnet/settings';
 import Img from "../Componnet/img";
 import bodySize from '../Actions/bodySize';
 import { connect } from 'react-redux';
+import Settings from '../Componnet/Settings';
 import '../static/css/main.css';
 
 class Body extends React.Component {

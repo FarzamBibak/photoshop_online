@@ -4,8 +4,8 @@ function bodySize(w, h) {
     return ({
         type: "bodySize",
         payload: {
-            bodyHeight: h,
-            bodyWidth: w,
+        bodyHeight: h,
+        bodyWidth: w,
         }
     })
 }

@@ -2,7 +2,7 @@
 
 import React from "react";
 import { connect } from 'react-redux';
-import imgSize from "../../Actions/imgSize";
+import imgSize from "../Actions/imgSize";
 import '../static/css/main.css';
 
 class Img extends React.Component {
