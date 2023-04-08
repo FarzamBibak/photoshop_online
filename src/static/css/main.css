@@ -26,6 +26,11 @@ head,
     margin-top: 5%;
     margin-right: 5%;
     float: right;
+
+    /* display: block;
+    margin-top:auto;
+    margin-right:auto; */
+
 }
 
 
@@ -35,11 +40,46 @@ head,
 .color-icon{
     width:20px;
     height:20px;
+
 }
 
+.Settings{
+    width: 60%;
+    height: 20%;
+    float: left;
+    margin-left: 20%;
+    margin-top: auto;
+    margin-bottom: 20px;
+    border-radius: 30px;
+    border-color: rgba(0, 0, 0, 0.178);
+    border-width: 2px;
+    border-style: groove;
+    background-color: rgb(148, 148, 148);
+}
 
+#color-grid{
+    display: flex;
+    align-content: flex-start;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    height: 100%;
 
+}
 
+#Tools{
+    float:right;
+    background-color:rgba(255, 255, 255, 0.219);
+    padding:5px; 
+    width:120px; 
+    text-align:center;
+}
 
-
+.tools-type{
+    background-color: #00000041;
+    border-color: rgba(0, 0, 0, 0.219);
+    padding:10px;
+    font-size: large;
+}
 

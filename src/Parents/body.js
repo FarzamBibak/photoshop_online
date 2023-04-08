@@ -4,7 +4,7 @@ import React from "react";
 import Img from "../Componnet/img";
 import bodySize from '../Actions/bodySize';
 import { connect } from 'react-redux';
-import Settings from '../Componnet/Settings';
+import Settings from '../Componnet/SettingsP';
 import '../static/css/main.css';
 
 class Body extends React.Component {
@@ -14,7 +14,7 @@ class Body extends React.Component {
 
         this.componentDidMount = this.componentDidMount.bind(this)
     }
-
+    
     componentDidMount() {
         const body = this.body
         let height = body.current.clientHeight

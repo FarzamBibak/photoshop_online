@@ -4,19 +4,19 @@ import React from "react";
 
 function Tools ({handleUtensil}){
     return(
-        <div id="Tools" style={{
-            backgroundColor:'lightGray' ,
-            padding:'5px' , 
-            width:'120px' , 
-            textAlign:"center"
-            }}>
+        <div id="Tools">
             <button 
+            className="tools-type"
             name="brush" 
             onClick={event=>handleUtensil(event.target.name , "tool")}>✏️</button>
+            <br></br>
             <button 
+            className="tools-type"
             name="bucket" 
-            onClick={event=>handleUtensil(event.target.name , "tool")}>🖌️</button>
+            onClick={event=>handleUtensil(event.target.name , "tool")}>🧹</button>
+            <br></br>
             <button 
+            className="tools-type"
             name="eraser" 
             onClick={event=>handleUtensil(event.target.name , "tool")}>❌</button>
         </div>

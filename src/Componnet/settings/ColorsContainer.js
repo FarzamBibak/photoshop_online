@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ColorCard from "./ColorCard";
 
 const colorList = ["#FFFFFF","#000000","#808080","#C0C0C0","#0000FF",
@@ -9,9 +9,8 @@ const colorGrid = colorList.map((color) => <ColorCard key={color}
 color={color}/>)
 
 
-function ColorContainer({utensil}) {
-
-
+function ColorContainer() {
+    const {colorState , setColorState} = useState("#FFFFFF")
     return(
         <div id="color-grid">
             {colorGrid}
