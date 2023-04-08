@@ -28,6 +28,7 @@ class Zoom extends React.Component {
             zoomValue: zoomShow
         })
 
+        console.log(this.props.canvasStyleWidth)
         this.props.dispatch(zoomValue(zoomShow, zoomUse));
     }
 
@@ -90,8 +91,8 @@ function mapStateToProps(state) {
         zoomShowValue: state.zoomShowValue,
         zoomUseValue: state.zoomUseValue,
         canvas: state.canvas,
-        canvasWidth: state.canvasWidth,
-        canvasHeight: state.canvasHeight,
+        canvasStyleWidth: state.canvasStyleWidth,
+        canvasStyleHeight: state.canvasStyleHeight,
         context: state.context,
         imgWidth: state.imgWidth,
         imgHeight: state.imgHeight,

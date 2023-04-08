@@ -31,6 +31,8 @@ class Img extends React.Component {
         image.onload = function () {
             dispatch(canvasDraw(image, image.width, image.height, ctx, canvas))
         }
+
+        console.log(this.props.bodyWidth, this.props.bodyHeight)
     };
 
     render() {
