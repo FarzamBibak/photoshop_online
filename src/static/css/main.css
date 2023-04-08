@@ -45,3 +45,9 @@ head,
 .imgCanvas {
     align-self: center;
 }
+
+.saveButton {
+    position: fixed;
+    right: 0px;
+    top: 0px;
+}

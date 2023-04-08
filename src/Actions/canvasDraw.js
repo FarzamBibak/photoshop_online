@@ -1,15 +1,16 @@
 // canvasDraw.js
 
-function canvasDraw(canvas, width, height, ctx) {
+function canvasDraw(image, width, height, ctx, canvas) {
     return ({
         type:
             "canvasDraw",
         payload:
         {
-            "canvas": canvas,
+            "imageTag": image,
             "canvasStyleWidth": width,
             "canvasStyleHeight": height,
             "context": ctx,
+            "canvas": canvas
         }
     })
 }

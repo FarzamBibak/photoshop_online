@@ -29,7 +29,7 @@ class Img extends React.Component {
 
         image.src = this.imgRef.current.src;
         image.onload = function () {
-            dispatch(canvasDraw(image, image.width, image.height, ctx))
+            dispatch(canvasDraw(image, image.width, image.height, ctx, canvas))
         }
     };
 
