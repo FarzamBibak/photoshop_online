@@ -21,29 +21,31 @@ class Zoom extends React.Component {
     }
 
     zoomIncrease() {
-        var zoomShow = parseFloat(this.inputRef.current.value) + 25,
+        var zoomShow = parseFloat(this.inputRef.current.value) + 12.5,
             zoomUse = zoomShow * 0.01;
 
         this.setState({
             zoomValue: zoomShow
         })
-
-        console.log(zoomUse);
 
         this.props.dispatch(zoomValue(zoomShow, zoomUse));
     }
 
     zoomDecrease() {
-        var zoomShow = parseFloat(this.inputRef.current.value) - 25,
-            zoomUse = zoomShow * 0.01;
+        var zoomShow = parseFloat(this.inputRef.current.value) - 12.5,
+            zoomUse;
 
-        this.setState({
-            zoomValue: zoomShow
-        })
+        if (zoomShow > 0) {
+            zoomUse = zoomShow * 0.01
 
-        console.log(zoomUse);
+            this.setState({
+                zoomValue: zoomShow
+            })
 
-        this.props.dispatch(zoomValue(zoomShow, zoomUse));
+            this.props.dispatch(zoomValue(zoomShow, zoomUse));
+        } else {
+            zoomShow = zoomShow + 12.5
+        }
     }
 
     changeValue() {
@@ -53,8 +55,6 @@ class Zoom extends React.Component {
         this.setState({
             zoomValue: zoomShow
         });
-
-        console.log(zoomUse);
 
         this.props.dispatch(zoomValue(zoomShow, zoomUse));
     }
@@ -73,7 +73,7 @@ class Zoom extends React.Component {
                     ref={this.inputRef}
                     value={this.state.zoomValue}
                     onChange={this.changeValue}
-                    min="0"
+                    min="1"
                     step="5" />
 
                 <button

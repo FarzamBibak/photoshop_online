@@ -21,12 +21,11 @@ head,
     width: 85%;
     height: 100%;
     overflow: auto;
+    display: flex;
+    justify-content: center;
 }
 
-.imgCanvas {
-    margin-top: 5%;
-    margin-right: 5%;
-    float: right;
+.canvas {
     overflow: auto;
     overflow-x: scroll;
 }
@@ -39,6 +38,10 @@ head,
     right: 20px;
 }
 
-.zoomInput{
+.zoomInput {
     width: 40px;
+}
+
+.imgCanvas {
+    align-self: center;
 }

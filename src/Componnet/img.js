@@ -4,8 +4,6 @@ import React from "react";
 import { connect } from 'react-redux';
 import imgSize from "../Actions/imgSize";
 import canvasDraw from "../Actions/canvasDraw";
-// import canvasStyleSet from '../Actions/canvasStyleSet'
-// import Canvas from './canvas'
 import '../static/css/main.css';
 
 class Img extends React.Component {
@@ -15,25 +13,17 @@ class Img extends React.Component {
         this.canvasRef = React.createRef();
         this.imgRef = React.createRef();
 
-        this.state = {
-            zoom: 1,
-            width: '',
-            height: '',
-        }
-
         this.onloadImg = this.onloadImg.bind(this);
     }
 
     onloadImg() {
-        const defaultWidth = this.imgRef.current.width;
-        const defaultHeight = this.imgRef.current.height;
+        const defaultWidth = this.imgRef.current.width,
+            defaultHeight = this.imgRef.current.height,
+            canvas = this.canvasRef.current,
+            ctx = canvas.getContext("2d");
 
-        const canvas = this.canvasRef.current;
-        const ctx = canvas.getContext("2d");
-
-        var dispatch = this.props.dispatch;
-        // var zoom = this.props.zoomUseValue;
-        var image = new Image();
+        var dispatch = this.props.dispatch,
+            image = new Image();
 
         dispatch(imgSize(defaultWidth, defaultHeight));
 
@@ -41,14 +31,11 @@ class Img extends React.Component {
         image.onload = function () {
             dispatch(canvasDraw(image, image.width, image.height, ctx))
         }
-
-        this.canvasRef.current.style.width = parseFloat(this.props.canvasStyleWidth) + "px";
-        this.canvasRef.current.style.height = parseFloat(this.props.canvasStyleHeight) + "px";
     };
 
     render() {
         return (
-            <div>
+            <div className="imgCanvas">
                 <img
                     ref={this.imgRef}
                     src={this.props.Image_src}
@@ -60,12 +47,11 @@ class Img extends React.Component {
                     ref={this.canvasRef}
                     width={this.props.imgDefaultWidth}
                     height={this.props.imgDefaultHeight}
-                    className="imgCanvas"
+                    className="canvas"
                     style={{
                         width: this.props.canvasStyleWidth * this.props.zoomUseValue,
                     }}
                 />
-                {/* <Canvas /> */}
             </div>
 
         )
@@ -75,20 +61,14 @@ class Img extends React.Component {
 function mapStateToProps(state) {
     return {
         Image_src: state.Image_src,
-
         bodyWidth: state.bodyWidth,
         bodyHeight: state.bodyHeight,
-
         imgWidth: state.imgWidth,
         imgHeight: state.imgHeight,
-
         imgDefaultWidth: state.imgDefaultWidth,
         imgDefaultHeight: state.imgDefaultHeight,
-
         zoomUseValue: state.zoomUseValue,
-
         imgLoad: state.imgLoad,
-
         canvasStyleWidth: state.canvasStyleWidth,
         canvasStyleHeight: state.canvasStyleHeight,
     }
