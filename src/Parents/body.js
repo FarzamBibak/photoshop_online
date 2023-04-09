@@ -4,8 +4,8 @@ import React from "react";
 import Img from "../Componnet/img";
 import bodySize from '../Actions/bodySize';
 import { connect } from 'react-redux';
-import Settings from '../Componnet/SettingsP';
 import '../static/css/main.css';
+import Menu from "../Componnet/Menu";
 
 class Body extends React.Component {
     constructor(props) {
@@ -28,7 +28,11 @@ class Body extends React.Component {
         return (
             <div ref={this.body} className="Body">
                 <Img />
-                <Settings />
+                <Menu
+            setLineColor={this.setLineColor}
+            setLineWidth={this.setLineWidth}
+            setLineOpacity={this.setLineOpacity}
+          />
             </div>
         )
     }

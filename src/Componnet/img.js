@@ -1,98 +1,87 @@
 // img.js
 
-import React , { useRef , useEffect , useState} from "react";
+import React, { Component, createRef } from "react";
 import '../static/css/main.css';
-import Menu from "./Menu";
+// import Menu from "./Menu";
+// import Settings from "./SettingsP";
 // import { connect } from 'react-redux';
 // import imgSize from "../Actions/imgSize";
 // import { render } from "@testing-library/react";
+import Menu from "./Menu";
 
-class Img extends React.Component {
-    constructor(props) {
-      super(props);
-      this.canvasRef = React.createRef();
-      this.ctxRef = React.createRef();
-      this.state = {
-        isDrawing: false,
-        lineWidth: 5,
-        lineColor: "black",
-        lineOpacity: 0.1
-      };
-    }
-  
-    componentDidMount() {
-      const canvas = this.canvasRef.current;
-      const ctx = canvas.getContext("2d");
-      ctx.lineCap = "round";
-      ctx.lineJoin = "round";
-      ctx.globalAlpha = this.state.lineOpacity;
-      ctx.strokeStyle = this.state.lineColor;
-      ctx.lineWidth = this.state.lineWidth;
-      this.ctxRef.current = ctx;
-    }
-  
-    startDrawing = (e) => {
-      this.ctxRef.current.beginPath();
-      this.ctxRef.current.moveTo(
-        e.nativeEvent.offsetX,
-        e.nativeEvent.offsetY
-      );
-      this.setState({ isDrawing: true });
+class Img extends Component {
+  constructor(props) {
+    super(props);
+    this.canvasRef = createRef(null);
+    this.ctxRef = createRef(null);
+    this.state = {
+      isDrawing: false,
+      lineWidth: 5,
+      lineColor: "black",
+      lineOpacity: 0.1,
     };
-  
-    endDrawing = () => {
-      this.ctxRef.current.closePath();
-      this.setState({ isDrawing: false });
-    };
-  
-    draw = (e) => {
-        console.log("fghjkl")
-      if (!this.state.isDrawing) {
-        return;
-      }
-      this.ctxRef.current.lineTo(
-        e.nativeEvent.offsetX,
-        e.nativeEvent.offsetY
-      );
-      this.ctxRef.current.stroke();
-    };
-  
-    setLineColor = (color) => {
-      this.setState({ lineColor: color });
-    };
-  
-    setLineWidth = (width) => {
-      this.setState({ lineWidth: width });
-    };
-  
-    setLineOpacity = (opacity) => {
-      this.setState({ lineOpacity: opacity });
-    };
-  
-    render() {
-      return (
-        <div className="App">
-          <div className="draw-area">
-            <Menu
-              setLineColor={this.setLineColor}
-              setLineWidth={this.setLineWidth}
-              setLineOpacity={this.setLineOpacity}
-            />
-            <canvas
-              ref={this.canvasRef}
-              width="1000px"
-              height="1000px"
-              onMouseDown={this.startDrawing}
-              onMouseUp={this.endDrawing}
-              onMouseMove={this.draw}
-            />
-          </div>
-        </div>
-      );
-    }
   }
-  
-  export default Img;
+
+  componentDidMount() {
+    const canvas = this.canvasRef.current;
+    const ctx = canvas.getContext("2d");
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.globalAlpha = this.state.lineOpacity;
+    ctx.strokeStyle = this.state.lineColor;
+    ctx.lineWidth = this.state.lineWidth;
+    this.ctxRef.current = ctx;
+  }
+
+  startDrawing = (e) => {
+    this.ctxRef.current.beginPath();
+    this.ctxRef.current.moveTo(e.nativeEvent.offsetX, e.nativeEvent.offsetY);
+    this.setState({ isDrawing: true });
+  };
+
+  endDrawing = () => {
+    this.ctxRef.current.closePath();
+    this.setState({ isDrawing: false });
+  };
+
+  draw = (e) => {
+    if (!this.state.isDrawing) {
+      return;
+    }
+    this.ctxRef.current.lineTo(e.nativeEvent.offsetX, e.nativeEvent.offsetY);
+    this.ctxRef.current.stroke();
+  };
+
+  setLineColor = (color) => {
+    this.setState({ lineColor: color });
+  };
+
+  setLineWidth = (width) => {
+    this.setState({ lineWidth: width });
+  };
+
+  setLineOpacity = (opacity) => {
+    this.setState({ lineOpacity: opacity });
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <div className="draw-area">
+          <canvas
+            className="imgCanvas"
+            ref={this.canvasRef}
+            onMouseDown={this.startDrawing}
+            onMouseUp={this.endDrawing}
+            onMouseMove={this.draw}
+          />
+        </div>
+      </div>
+    );
+  }
+}
+
+export default Img;
   
 ///////////////////////////////////////////////////
 // function Img (size , colorState){
