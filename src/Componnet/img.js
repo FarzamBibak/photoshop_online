@@ -39,14 +39,7 @@ class Img extends React.Component {
         }    
     }
 
-/*
-    rotateAngle: '',
-    textFont: '',
-    textSize: 12,
-    textPositionX: '',
-    textPositionY: '',
-    panelDisplay: 0,
-*/
+
     render() {
         return (
             <div>

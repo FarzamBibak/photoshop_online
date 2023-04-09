@@ -34,7 +34,6 @@ class FilterImgBtn extends Component{
                 <button onClick={this.click1}>   تصویر فیلتر </button> 
                 <button onClick={this.click2}> برگردندان تصویر </button>
                 <button onClick={this.click3}> تنظیمات متن </button>
-
             </div>
             
 
