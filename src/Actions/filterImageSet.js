@@ -9,7 +9,7 @@ function filterImageSettings(grayscale,sepia,blur,brightness,contrast){
 
         payload:
         {
-            filter :"grayscale(" + grayscale.toString() +")" + " sepia("+sepia +")"
+            filter :"grayscale(" + grayscale.toString() +")" + " sepia("+sepia +")" + " blur("+ blur +")" + " brightness("+ brightness +")" +  " contrast("+ contrast +")"
         }
     }
 }

@@ -1,18 +1,21 @@
-function rotateAngle (rotate){
+
+
+function RotateSettings (rotate){
     return{
         type:
-          "rotateAngle",
+          "rotateSettings",
 
         payload:
         {
-            transform: 'rotate()'
-
-
-        }
-    }
+    transform:"rotate(" + rotate + "deg)"
+   // transform: rotate(45deg);
 }
 
+    }
+}
+export default RotateSettings;
 
-export default rotateAngle;
+
+//transform.Rotate(xAngle, yAngle, zAngle,
 
 

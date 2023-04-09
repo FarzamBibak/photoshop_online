@@ -51,7 +51,7 @@ class Img extends React.Component {
         return (
             <div>
             <img ref={this.imgRef} src={this.props.Image_src} onLoad={this.onloadImg} style={{display:"none"}}/>
-            <canvas style= {{filter: this.props.canvasStyle.filter , transform:this.props.rotateAngle.transform}}
+            <canvas style= {{filter: this.props.canvasStyle.filter , transform:this.props.rotateAngle}}
                 ref={this.canvasRef}
                 width={this.props.imgWidth}
                 height={this.props.imgHeight}

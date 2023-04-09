@@ -27,6 +27,7 @@ const initialStates = {
     scaleRatio: 1,
     canvasStyle: "test",
     rotateAngle: '',
+    rotate:false,
     textFont: '',
     textSize: 12,
     textPositionX: '',
@@ -57,6 +58,7 @@ function setDisplaySettings(state, display) {
     }
 }
 export const settingsReducer = (state = initialStates, action) => {
+    console.log(action)
     switch (action.type) {
 
         case "setCtx":
@@ -159,7 +161,8 @@ export const settingsReducer = (state = initialStates, action) => {
                 canvasStyle: action.payload,
             }
 
-        case " rotateSettings ":
+        case "rotateSettings":
+            console.log(action.payload)
             return {
                 ...state,
 

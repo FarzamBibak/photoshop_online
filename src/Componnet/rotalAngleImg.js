@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import rotateAngle from "../Actions/rotalAngle";
+import RotateSettings from "../Actions/rotalAngle";
 import '../static/css/settingsPanel.css';
 import SettingComponnet from "./SettingComponnet";
 
@@ -12,7 +12,7 @@ import { connect } from "react-redux";
       this.rotate= React.createRef();
       this.Click = this.Click.bind(this) 
 
-   
+      
 
     this.state = {
         "fields" : [
@@ -23,45 +23,42 @@ import { connect } from "react-redux";
             },
 
         ],
+
         "component_name" : "rotate_setting"
 
     }
 
     }
 
-
      Click(){
         const rotate = this.rotate.current.value;
-        this.props.dispatch(rotateAngle(rotate))
+        console.log(rotate)
+        console.log(RotateSettings(rotate))
+        //this.setState({ rotate: true })
+        this.props.dispatch(RotateSettings(rotate))
 
-        console.log("hereeeeeeeeeee")
+
+        console.log("rrrrrrrrrrrrrrrrrrrr")
+        console.log(this.props.rotateAngle)
 
      }
 
-
-//----------------------------------
-
-
-      
-            
-     
+//----------------------------------           
     }  
     
-    
- 
-
-function mapStateToProps(state) 
+function mapDispatchToProps(state) 
         {
-    return { img_Local: state.img_Scr,
-        settingType:state.settingType }
+    return {
+            settingType:state.settingType,
+            rotateAngle:state.rotateAngle
+        }
      
         }
 
 
 
-
     
 
 
 
-export default connect(mapStateToProps)(RotateImg);
+export default connect(mapDispatchToProps)(RotateImg);  

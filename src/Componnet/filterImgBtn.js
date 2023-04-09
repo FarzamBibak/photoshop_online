@@ -8,7 +8,7 @@ import setSettingType from "../Actions/settingDisplay";
 class FilterImgBtn extends Component{
     constructor(props) {
         super(props)
-        this.menu= React.createRef;
+        //this.menu= React.createRef;
         this.click1 = this.click1.bind(this)
         this.click2 = this.click2.bind(this)
         this.click3 = this.click3.bind(this)
@@ -19,7 +19,7 @@ class FilterImgBtn extends Component{
 
     }
     click2(){
-        this.props.dispatch(setSettingType("rotate_setting"))
+        this.props.dispatch(setSettingType("rotate_setting"))  
 
     }
 
@@ -31,7 +31,7 @@ class FilterImgBtn extends Component{
     render(){
         return(
             <div>
-                <button onClick={this.click1}>   تصویر فیلتر </button>
+                <button onClick={this.click1}>   تصویر فیلتر </button> 
                 <button onClick={this.click2}> برگردندان تصویر </button>
                 <button onClick={this.click3}> تنظیمات متن </button>
 

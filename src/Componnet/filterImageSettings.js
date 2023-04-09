@@ -77,11 +77,8 @@ import { connect } from "react-redux";
 
 
   function mapDispatchToProps(state) {
-   return{ img_Local: state.img_Scr,
-    settingType:state.settingType
-           }
-
-  }
+   return{ settingType:state.settingType }
+         }
 
    
 
