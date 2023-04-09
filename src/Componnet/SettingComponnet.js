@@ -14,7 +14,7 @@ class SettingComponnet extends React.Component {
         for (let i =0;i<this.state.fields.length; i++){
             l.push(
                 <div className="information">
-                  <label>{ this.state.fields[i].name }:</label>
+                  <label  className="lable">{ this.state.fields[i].name }:</label>
                   <input type="text" className="input" ref={this.state.fields[i].ref} />
                  </div>
         

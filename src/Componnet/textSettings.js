@@ -21,12 +21,12 @@ import { connect } from "react-redux";
                     "ref":this.text
                 },
                 {
-                    "x": "x",
+                    "name": "xposition x",
                     "ref": this.x
                 },
 
                 {
-                    "name": "y" ,
+                    "name": "position y" ,
                     "ref" : this.y
                 },
 
