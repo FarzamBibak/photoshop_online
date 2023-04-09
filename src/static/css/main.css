@@ -10,7 +10,7 @@ head,
 
 .Panel {
     float: left;
-    background-color: aquamarine;
+    background-color:aquamarine;
     width: 15%;
     height: 100%;
     position: fixed;

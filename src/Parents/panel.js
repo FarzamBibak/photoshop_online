@@ -12,6 +12,6 @@ class Panel extends React.Component {
             </div>
         )
     }
-}
+};
 
 export default Panel;

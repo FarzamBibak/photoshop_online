@@ -1,14 +1,13 @@
 .panel {
-    background-color: purple;
-    height: fit-content;
-    width: 600px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    position: fixed;
-    bottom: 0px;
-    left: 150px;
+        background-color: rgb(212, 144, 212);
+        height: fit-content;
+        width: 600px;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+        position: fixed;
+        bottom: 10px;
+        left: 150px;
 }
-
 .doneButton {
     position: absolute;
     bottom: 5px;
@@ -34,10 +33,21 @@
 
 .input {
     height: 20px;
-    margin-left: 5px;
+    right: 15px;
     margin-top: 20px;
+    width: 150px;
+
 }
 
 .buttons {
     height: 30px;
 }
+
+.lable {margin-left:80px;  margin-top: 20px; background-color: rgb(168, 214, 158);}
+
+
+.buttons .closeButton{ margin-bottom: 400px; margin-right: 1080px; size: 100px; padding: 20px 60px; text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;}
+.buttons .doneButton {margin-bottom: 400px; margin-right: 1000px; padding: 20px 60px; text-align: center;}

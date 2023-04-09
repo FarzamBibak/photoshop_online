@@ -19,11 +19,12 @@ const initialStates = {
     isTouchedDownCrop: 0,
     yTopCrop: '',
     yDownCrop: '',
-    xRightCrop: '', 
+    xRightCrop: '',
     xLeftCrop: '',
     scaleRatio: 1,
-    canvasStyle: '',
+    canvasStyle: "test",
     rotateAngle: '',
+    rotate: false,
     textFont: '',
     textSize: 12,
     textPositionX: '',
@@ -44,6 +45,8 @@ const initialStates = {
     context: '',
     Img: '',
     canvas: '',
+    settingType: '',
+    ctx: '',
 }
 
 function setDisplaySettings(state, display) {
@@ -90,6 +93,7 @@ function drawCanvas(
 }
 
 export const settingsReducer = (state = initialStates, action) => {
+    console.log(action)
     switch (action.type) {
         case "canvasDraw":
             return drawCanvas(
@@ -133,6 +137,19 @@ export const settingsReducer = (state = initialStates, action) => {
 
                 zoomShowValue: action.payload.showValue,
                 zoomUseValue: action.payload.useValue,
+            }
+
+
+        case "setCtx":
+            return {
+                ...state,
+                ctx: action.payload.ctx
+            }
+
+        case "setSettingType":
+            return {
+                ...state,
+                settingType: action.payload.settingType
             }
 
         case "changeSrc":
@@ -222,14 +239,15 @@ export const settingsReducer = (state = initialStates, action) => {
             return {
                 ...state,
 
-                canvasStyle: action.payload.css,
+                canvasStyle: action.payload,
             }
 
         case "rotateSettings":
+            console.log(action.payload)
             return {
                 ...state,
 
-                rotateAngle: action.payload.angle,
+                rotateAngle: action.payload.transform,
             }
 
         case "textSettings":
@@ -246,3 +264,5 @@ export const settingsReducer = (state = initialStates, action) => {
             return initialStates;
     }
 }
+
+export default setDisplaySettings;
