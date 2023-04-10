@@ -37,6 +37,7 @@ class Img extends Component {
     this.ctxRef.current.beginPath();
     this.ctxRef.current.moveTo(e.nativeEvent.offsetX, e.nativeEvent.offsetY);
     this.setState({ isDrawing: true });
+    console.log(e)
   };
 
   endDrawing = () => {

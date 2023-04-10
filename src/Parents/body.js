@@ -28,12 +28,12 @@ class Body extends React.Component {
         return (
             <div ref={this.body} className="Body">
                 {isShown && <Img />}
-                {/* <Img /> */}
-                <Menu
+                {/* <Img />  */}
+                {isShown && <Menu
                     setLineColor={this.setLineColor}
                     setLineWidth={this.setLineWidth}
                     setLineOpacity={this.setLineOpacity}
-                />
+                />}
             </div>
         )
     }
