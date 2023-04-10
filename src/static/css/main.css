@@ -48,3 +48,14 @@ head,
     right: 20px;
     top: 5px;
 }
+
+.buttons {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.button {
+    width: 90%;
+    margin: 5%;
+    margin-bottom: 0px;
+}

@@ -2,6 +2,7 @@
 
 import React from "react";
 import SettingComponnet from "./SettingComponnet";
+import displayPanel from "../Actions/displayPanel";
 import { connect } from "react-redux";
 
 class TextSettings extends SettingComponnet {
@@ -39,18 +40,28 @@ class TextSettings extends SettingComponnet {
     };
 
     Click = () => {
-        const text = this.text.current.value;
-        const x = this.x.current.value;
-        const y = this.y.current.value;
-        const font_siza = this.font_size.current.value;
-        this.props.ctx.fillText(text, x, y, font_siza)
+        if (this.props.context) {
+            const text = this.text.current.value;
+            const x = this.x.current.value;
+            const y = this.y.current.value;
+            const font_siza = this.font_size.current.value;
+            this.props.ctx.fillText(text, x, y, font_siza)
+        }
     };
+
+    clickClose = () => {
+        const display = "none";
+
+        this.props.dispatch(displayPanel(display))
+    }
 };
 
 function mapDispatchToProps(state) {
     return {
         settingType: state.settingType,
-        ctx: state.ctx
+        ctx: state.ctx,
+        panelDisplay: state.panelDisplay,
+        context: state.context,
     }
 };
 

@@ -29,7 +29,7 @@ const initialStates = {
     textSize: 12,
     textPositionX: '',
     textPositionY: '',
-    panelDisplay: 0,
+    panelDisplay: 'none',
     Image_src: '',
     bodyWidth: '',
     bodyHeight: '',
@@ -50,17 +50,17 @@ const initialStates = {
 }
 
 function setDisplaySettings(state, display) {
-    if (display === 1) {
+    if (display === "block") {
         return {
             ...state,
 
-            panelDisplay: 1,
+            panelDisplay: "block",
         }
-    } else if (display === 0) {
+    } else if (display === "none") {
         return {
             ...state,
 
-            panelDisplay: 0,
+            panelDisplay: "none",
         }
     }
 }
@@ -143,13 +143,16 @@ export const settingsReducer = (state = initialStates, action) => {
         case "setCtx":
             return {
                 ...state,
-                ctx: action.payload.ctx
+
+                ctx: action.payload.ctx,
             }
 
         case "setSettingType":
             return {
                 ...state,
-                settingType: action.payload.settingType
+
+                settingType: action.payload.settingType,
+                panelDisplay: "block"
             }
 
         case "changeSrc":

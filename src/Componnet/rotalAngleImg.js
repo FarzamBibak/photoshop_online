@@ -4,6 +4,7 @@ import React from "react";
 import RotateSettings from "../Actions/rotalAngle";
 import '../static/css/settingsPanel.css';
 import SettingComponnet from "./SettingComponnet";
+import displayPanel from "../Actions/displayPanel";
 import { connect } from "react-redux";
 
 
@@ -26,15 +27,25 @@ class RotateImg extends SettingComponnet {
     }
 
     Click() {
-        const rotate = this.rotate.current.value;
-        this.props.dispatch(RotateSettings(rotate))
+        if (this.props.context) {
+            const rotate = this.rotate.current.value;
+            this.props.dispatch(RotateSettings(rotate))
+        }
+    }
+
+    clickClose = () => {
+        const display = "none";
+
+        this.props.dispatch(displayPanel(display))
     }
 };
 
 function mapDispatchToProps(state) {
     return {
         settingType: state.settingType,
-        rotateAngle: state.rotateAngle
+        rotateAngle: state.rotateAngle,
+        panelDisplay: state.panelDisplay,
+        context: state.context,
     }
 };
 

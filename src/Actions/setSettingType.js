@@ -1,16 +1,4 @@
-// settingDisplay.js
-
-function settingDisplay(display) {
-    return {
-        type:
-            "displayPanel",
-
-        payload:
-        {
-            "display": display,
-        }
-    }
-}
+// setSettingType.js
 
 function setSettingType(type) {
     return {
