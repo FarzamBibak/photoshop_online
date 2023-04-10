@@ -10,11 +10,6 @@ import '../static/css/main.css';
 
 function Settings(){
 
-    const [utensil, setUtensil] = useState({
-        tool:"brush",
-        weight:"size1",
-        color:"color"
-    })
 
     function handleUtensil(updateItem){
         const newUtensil={...utensil}
@@ -24,9 +19,9 @@ function Settings(){
 
     return(
             <div className="Settings">
-        <ToolType handleUtensil={handleUtensil}/>
-        <BrushSize handleUtensil={handleUtensil}/>
-        <ColorContainer utensil={utensil}/>
+        <ToolType/>
+        <BrushSize/>
+        <ColorContainer/>
             </div>
     )
 }

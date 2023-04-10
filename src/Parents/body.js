@@ -23,16 +23,17 @@ class Body extends React.Component {
         this.props.dispatch(bodySize(width, height))
     }
 
-    render() {
+    render(isShown) {
 
         return (
             <div ref={this.body} className="Body">
-                <Img />
+                {isShown && <Img />}
+                {/* <Img /> */}
                 <Menu
-            setLineColor={this.setLineColor}
-            setLineWidth={this.setLineWidth}
-            setLineOpacity={this.setLineOpacity}
-          />
+                    setLineColor={this.setLineColor}
+                    setLineWidth={this.setLineWidth}
+                    setLineOpacity={this.setLineOpacity}
+                />
             </div>
         )
     }

@@ -50,6 +50,7 @@ class Img extends Component {
     }
     this.ctxRef.current.lineTo(e.nativeEvent.offsetX, e.nativeEvent.offsetY);
     this.ctxRef.current.stroke();
+    console.log(e.nativeEvent.offsetX , e.nativeEvent.offsetY)
   };
 
   setLineColor = (color) => {
