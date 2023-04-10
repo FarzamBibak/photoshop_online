@@ -44,23 +44,23 @@ class FilterImage extends SettingComponnet {
         this.Click = this.Click.bind(this);
     };
 
-    Click = () => {
+    Click() {
         if (this.props.context) {
             const grayscale = this.grayscale.current.value;
             const sepia = this.sepia.current.value;
             const blur = this.blur.current.value;
             const brightness = this.brightness.current.value;
             const contrast = this.contrast.current.value;
-            this.props.dispatch(filterImageSettings(grayscale, sepia, blur, brightness, contrast));
-            console.log("here");
-        }
-    }
 
-    clickClose = () => {
+            this.props.dispatch(filterImageSettings(grayscale, sepia, blur, brightness, contrast));
+        }
+    };
+
+    clickClose() {
         const display = "none";
 
         this.props.dispatch(displayPanel(display))
-    }
+    };
 };
 
 function mapDispatchToProps(state) {

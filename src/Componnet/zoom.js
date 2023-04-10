@@ -28,7 +28,6 @@ class Zoom extends React.Component {
             zoomValue: zoomShow
         })
 
-        console.log(this.props.canvasStyleWidth)
         this.props.dispatch(zoomValue(zoomShow, zoomUse));
     }
 

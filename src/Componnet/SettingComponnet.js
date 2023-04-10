@@ -10,16 +10,16 @@ class SettingComponnet extends React.Component {
       list.push(
         <div className="information">
           <h3>{this.state.fields[i].name}:</h3>
-          <input type="text" className="input" ref={this.state.fields[i].ref} />
+          <input type="text" {... this.state.fields[i].properties} className="input" ref={this.state.fields[i].ref} />
         </div>
       )
     }
     if (this.props.settingType == this.state.component_name) {
       return (
-        <div className="panel" style={{display: this.props.panelDisplay}}>
+        <div className="panel" style={{ display: this.props.panelDisplay }}>
           {list}
           <div className="buttons">
-            <button className="doneButton" onClick={this.Click}  > Done </button>
+            <button className="doneButton" onClick={this.Click}> Done </button>
             <button className="closeButton" onClick={this.clickClose}> Close </button>
           </div>
         </div>

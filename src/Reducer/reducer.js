@@ -2,7 +2,8 @@
 
 const initialStates = {
     paintColor: 'black',
-    paintLineWidth: '1',
+    paintLineWidth: 5,
+    paintOpacity: 0.1,
     mouseShape: '',
     isSelected: 0,
     selectX1: '',
@@ -93,8 +94,15 @@ function drawCanvas(
 }
 
 export const settingsReducer = (state = initialStates, action) => {
-    console.log(action)
     switch (action.type) {
+        case "paintSet":
+            return {
+                ...state,
+
+                paintColor: action.payload.color,
+                paintLineWidth: action.payload.width,
+                paintOpacity: action.payload.opacity,
+            }
         case "canvasDraw":
             return drawCanvas(
                 action.payload.imageTag,
@@ -246,7 +254,6 @@ export const settingsReducer = (state = initialStates, action) => {
             }
 
         case "rotateSettings":
-            console.log(action.payload)
             return {
                 ...state,
 

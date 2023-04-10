@@ -18,45 +18,50 @@ class TextSettings extends SettingComponnet {
             "fields": [
                 {
                     "name": "text",
-                    "ref": this.text
+                    "ref": this.text,
+                    "properties": { type: "text" }
                 },
                 {
                     "name": "xposition x",
-                    "ref": this.x
+                    "ref": this.x,
+                    "properties": { type: "number" }
                 },
                 {
                     "name": "position y",
-                    "ref": this.y
+                    "ref": this.y,
+                    "properties": { type: "number" }
                 },
                 {
                     "name": "font size",
-                    "ref": this.font_size
+                    "ref": this.font_size,
+                    "properties": { type: "number" }
                 },
             ],
             "component_name": "text_setting"
         };
 
         this.Click = this.Click.bind(this);
+        this.clickClose = this.clickClose.bind(this)
     };
 
-    Click = () => {
+    Click() {
         if (this.props.context) {
-            const text = this.text.current.value;
-            const x = this.x.current.value;
-            const y = this.y.current.value;
-            const font_siza = this.font_size.current.value;
-            this.props.ctx.fillText(text, x, y, font_siza)
+            const text = this.text.current.value,
+                x = this.x.current.value,
+                y = this.y.current.value,
+                fontSize = this.font_size.current.value;
+            this.props.ctx.fillText(text, x, y, fontSize);
         }
     };
 
-    clickClose = () => {
+    clickClose() {
         const display = "none";
 
         this.props.dispatch(displayPanel(display))
     }
 };
 
-function mapDispatchToProps(state) {
+function mapStateToProps(state) {
     return {
         settingType: state.settingType,
         ctx: state.ctx,
@@ -65,4 +70,4 @@ function mapDispatchToProps(state) {
     }
 };
 
-export default connect(mapDispatchToProps)(TextSettings);
+export default connect(mapStateToProps)(TextSettings);
