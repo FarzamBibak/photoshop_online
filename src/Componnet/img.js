@@ -4,8 +4,8 @@ import React from "react";
 import { connect } from 'react-redux';
 import imgSize from "../Actions/imgSize";
 import canvasDraw from "../Actions/canvasDraw";
+import canvasRef from "../Actions/canvasRef";
 import ctxText from "../Actions/settingCTX";
-import '../static/css/main.css';
 
 class Img extends React.Component {
   constructor(props) {
@@ -35,6 +35,8 @@ class Img extends React.Component {
     ctx.strokeStyle = this.state.lineColor;
     ctx.lineWidth = this.state.lineWidth;
     this.ctxRef.current = ctx;
+
+    this.props.dispatch(canvasRef(this.canvasRef))
   }
 
   startDrawing = (e) => {
@@ -52,27 +54,59 @@ class Img extends React.Component {
     if (!this.state.isDrawing) {
       return;
     }
-    this.ctxRef.current.lineTo(e.nativeEvent.offsetX, e.nativeEvent.offsetY);
-    this.ctxRef.current.stroke();
+    if (this.props.paintActive) {
+      this.ctxRef.current.lineTo(e.nativeEvent.offsetX, e.nativeEvent.offsetY);
+      this.ctxRef.current.stroke();
+    }
   };
 
   onloadImg() {
+    this.props.dispatch(canvasRef(this.canvasRef))
+
     const defaultWidth = this.imgRef.current.width,
       defaultHeight = this.imgRef.current.height,
       canvas = this.canvasRef.current,
       ctx = canvas.getContext("2d");
 
+    const bodyWidth = this.props.bodyWidth,
+      bodyHeight = this.props.bodyHeight,
+      widthScale = bodyWidth / defaultWidth,
+      heightScale = bodyHeight / defaultHeight;
+
+    var scale = 1;
+
+    if (bodyWidth <= defaultWidth || bodyHeight <= defaultHeight) {
+      console.log(bodyWidth, bodyHeight, defaultWidth, defaultHeight);
+      console.log("in is")
+      if (widthScale < heightScale) {
+        console.log("1 true")
+        scale = parseFloat(widthScale)
+      } else if (heightScale < widthScale) {
+        console.log("2 true")
+        scale = parseFloat(heightScale)
+      }
+    }
+
+    var canvasWidth = (defaultWidth * scale) - 20,
+      canvasHeight = (defaultHeight * scale) - 20;
+
+    console.log(canvasWidth, canvasHeight, scale, widthScale, heightScale);
+
     var dispatch = this.props.dispatch,
       image = new Image();
 
-    dispatch(imgSize(defaultWidth, defaultHeight));
+    this.props.dispatch(imgSize(canvasWidth, canvasHeight));
 
     image.src = this.imgRef.current.src;
     this.props.dispatch(ctxText(ctx))
+
     image.onload = function () {
-      dispatch(canvasDraw(image, image.width, image.height, ctx, canvas))
+      dispatch(canvasDraw(image, canvasWidth, canvasHeight, ctx, canvas))
     }
+
+    this.props.dispatch(canvasRef(this.canvasRef))
   };
+
   setLineColor = (color) => {
     this.setState({ lineColor: color });
   };
@@ -86,7 +120,7 @@ class Img extends React.Component {
   };
   render() {
     return (
-      <div className="imgCanvas">
+      <>
         <img
           ref={this.imgRef}
           src={this.props.Image_src}
@@ -98,17 +132,19 @@ class Img extends React.Component {
           ref={this.canvasRef}
           width={this.props.imgDefaultWidth}
           height={this.props.imgDefaultHeight}
+
           onMouseDown={this.startDrawing}
           onMouseUp={this.endDrawing}
           onMouseMove={this.draw}
-          className="canvas"
+
+          className={"imgCanvas align-self-center " + this.props.canvasCursorCssHandeler}
           style={{
             filter: this.props.canvasStyle.filter,
             transform: this.props.rotateAngle,
             width: this.props.canvasStyleWidth * this.props.zoomUseValue,
           }}
         />
-      </div>
+      </>
     )
   }
 }
@@ -127,7 +163,9 @@ function mapStateToProps(state) {
     canvasStyleWidth: state.canvasStyleWidth,
     canvasStyleHeight: state.canvasStyleHeight,
     canvasStyle: state.canvasStyle,
-    rotateAngle: state.rotateAngle
+    rotateAngle: state.rotateAngle,
+    paintActive: state.paintActive,
+    canvasCursorCssHandeler: state.canvasCursorCssHandeler
   }
 }
 

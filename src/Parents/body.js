@@ -3,12 +3,10 @@
 import React from "react";
 import Img from "../Componnet/img";
 import Zoom from "../Componnet/zoom";
-import Save from "../Componnet/save";
 import bodySize from '../Actions/bodySize';
 import { connect } from 'react-redux';
 import Settings from "../Componnet/settings";
 import srcChanger from "../Actions/srcChanger";
-import '../static/css/main.css';
 
 class Body extends React.Component {
     constructor(props) {
@@ -69,7 +67,6 @@ class Body extends React.Component {
                 <Img />
                 <Settings />
                 <Zoom />
-                <Save />
                 <input ref={this.inputRef} type="file" style={{ display: "none" }} />
             </div>
         )

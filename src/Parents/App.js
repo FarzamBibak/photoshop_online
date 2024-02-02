@@ -1,9 +1,9 @@
 // App.js
 
-import '../static/css/main.css';
 import React from 'react';
 import Body from './body';
 import Panel from './panel';
+
 
 class App extends React.Component {
   render() {

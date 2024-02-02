@@ -7,7 +7,7 @@ function filterImageSettings(grayscale, sepia, blur, brightness, contrast) {
 
         payload:
         {
-            filter: "grayscale(" + grayscale.toString() + ")" + " sepia(" + sepia + ")" + " blur(" + blur + ")" + " brightness(" + brightness + ")" + " contrast(" + contrast + ")",
+            filter: "grayscale(" + grayscale.toString() + "%)" + " sepia(" + sepia + "%)" + " blur(" + blur + "px)" + " brightness(" + brightness + ")" + " contrast(" + contrast + "%)",
         }
     }
 }

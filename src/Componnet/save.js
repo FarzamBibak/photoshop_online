@@ -2,7 +2,6 @@
 
 import React from "react";
 import { connect } from 'react-redux';
-import '../static/css/main.css'
 
 class Save extends React.Component {
     constructor(props) {
@@ -14,11 +13,15 @@ class Save extends React.Component {
     };
 
     click() {
-        const canvas = this.props.canvas;
-        const dataUrl = canvas.toDataURL('image/png');
+        if (this.props.context) {
+            const canvas = this.props.canvas;
+            const dataUrl = canvas.toDataURL('image/png');
 
-        this.aRef.current.href = dataUrl;
-        this.aRef.current.click()
+            this.aRef.current.href = dataUrl;
+            this.aRef.current.click()
+        } else {
+            console.warning("there is no context")
+        }
     };
 
     render() {
@@ -26,7 +29,7 @@ class Save extends React.Component {
             <>
                 <button
                     onClick={this.click}
-                    className="saveButton"
+                    className="custom-button btn btn-success force-bottom"
                 >
                     Save As
                 </button>

@@ -2,11 +2,11 @@
 
 import React from "react";
 import Buttons from "../Componnet/buttons";
-import '../static/css/main.css';
+
 
 class Panel extends React.Component {
-    render(){
-        return(
+    render() {
+        return (
             <div className="Panel">
                 <Buttons />
             </div>

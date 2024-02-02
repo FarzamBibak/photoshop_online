@@ -1,13 +1,18 @@
+:root {
+    --wet-asphalt: #34495e
+}
+
 .panel {
-    background-color: rgb(129, 181, 39);
-    height: fit-content;
-    width: 600px;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    position: fixed;
-    bottom: 10px;
-    left: 150px;
-    margin: 0px;
+    background-color: var(--wet-asphalt);
+    height: fit-content !important;
+    width: 30% !important;
+    border-top-left-radius: 15px !important;
+    border-top-right-radius: 15px !important;
+    position: fixed !important;
+    bottom: 0px !important;
+    left: 35% !important;
+    /* margin: 0px !important; */
+    padding: 5px;
 }
 
 .doneButton {
@@ -33,13 +38,6 @@
     flex-flow: nowrap row;
 }
 
-.input {
-    height: 20px;
-    right: 15px;
-    margin-top: 20px;
-    width: 150px;
-}
-
-.buttons {
-    height: 30px;
+.custom-margin {
+    margin: 5px;
 }

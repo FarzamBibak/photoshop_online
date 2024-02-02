@@ -1,3 +1,8 @@
+:root {
+    --midnight-blue: #2c3e50;
+    --peter-river: #3498db;
+}
+
 html,
 body,
 head,
@@ -10,52 +15,65 @@ head,
 
 .Panel {
     float: left;
-    background-color:aquamarine;
+    background: var(--midnight-blue);
     width: 15%;
     height: 100%;
     position: fixed;
 }
 
 .Body {
-    background-color: rebeccapurple;
-    width: fit-content;
-    height: initial;
+    background: var(--peter-river);
     margin-left: 15%;
-    display: flex;
-    justify-content: center;
-    min-height: -webkit-fill-available;
-    min-width: -webkit-fill-available;
+    /* display: flex; */
+
+
+    height: 100%;
+    width: 85%;
 }
 
 .zoomOptions {
-    display: flex;
-    flex-flow: row nowrap;
-    position: fixed;
+    position: absolute;
     bottom: 20px;
     right: 20px;
 }
 
 .zoomInput {
-    width: 40px;
+    width: 60px;
 }
 
 .imgCanvas {
-    align-self: center;
+    display: block;
+    margin: 0 auto;
 }
 
-.saveButton {
-    position: fixed;
-    right: 20px;
-    top: 5px;
-}
-
-.buttons {
+/* .buttons {
     display: flex;
     flex-flow: column nowrap;
-}
+} */
 
-.button {
+.custom-button {
     width: 90%;
     margin: 5%;
     margin-bottom: 0px;
+}
+
+.force-bottom {
+    position: absolute !important;
+    bottom: 20px !important;
+}
+
+.cursor-default {
+    cursor: default;
+}
+
+.cursor-paint {
+    cursor: url("../img/paint.png"), auto;
+}
+
+.cursor-text {
+    cursor: text;
+}
+
+.cursor-rotate {
+    cursor: url("../img/rotate.png"), auto;
 }

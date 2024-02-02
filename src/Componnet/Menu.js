@@ -1,10 +1,9 @@
 import React from "react";
-import '../static/css/main.css';
 
 const Menu = ({ setLineColor, setLineWidth, setLineOpacity }) => {
   return (
     <div className="Menu">
-      <label>Brush Color </label>
+      <label> Brush Color </label>
       <input
         type="color"
         onChange={(e) => {

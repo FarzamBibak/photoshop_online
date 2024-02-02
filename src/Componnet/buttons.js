@@ -1,9 +1,9 @@
 // buttons.js
 
 import React from "react";
-import '../static/css/main.css';
 import { connect } from "react-redux";
 import setSettingType from "../Actions/setSettingType";
+import Save from "./save.js";
 
 class Buttons extends React.Component {
   constructor(props) {
@@ -16,28 +16,30 @@ class Buttons extends React.Component {
   };
 
   click1() {
-    this.props.dispatch(setSettingType("filter_setting"))
+    this.props.dispatch(setSettingType("filter_setting", "cursor-default"));
   };
 
   click2() {
-    this.props.dispatch(setSettingType("rotate_setting"))
+    this.props.dispatch(setSettingType("rotate_setting", "cursor-rotate"));
   };
 
   click3() {
-    this.props.dispatch(setSettingType("text_setting"))
+    this.props.dispatch(setSettingType("text_setting", "cursor-text"));
   };
 
   click4() {
-    this.props.dispatch(setSettingType("paint_setting"))
+    this.props.dispatch(setSettingType("paint_setting", "cursor-default"));
   };
 
   render() {
     return (
-      <div className="buttons">
-        <button onClick={this.click1} className="button"> Filter Image </button>
-        <button onClick={this.click2} className="button"> Rotate </button>
-        <button onClick={this.click3} className="button"> Text </button>
-        <button onClick={this.click4} className="button"> Paint </button>
+      <div className="d-flex flex-column">
+        <button onClick={this.click1} className="custom-button btn btn-primary"> Filter Image </button>
+        <button onClick={this.click2} className="custom-button btn btn-primary"> Rotate </button>
+        <button onClick={this.click3} className="custom-button btn btn-primary"> Text </button>
+        <button onClick={this.click4} className="custom-button btn btn-primary"> Paint </button>
+
+        <Save />
       </div>
     )
   };

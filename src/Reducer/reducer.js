@@ -4,7 +4,7 @@ const initialStates = {
     paintColor: 'black',
     paintLineWidth: 5,
     paintOpacity: 0.1,
-    mouseShape: '',
+    paintActive: false,
     isSelected: 0,
     selectX1: '',
     selectX2: '',
@@ -48,6 +48,8 @@ const initialStates = {
     canvas: '',
     settingType: '',
     ctx: '',
+    canvasRef: Object,
+    canvasCursorCssHandeler: "cursor-default"
 }
 
 function setDisplaySettings(state, display) {
@@ -62,6 +64,8 @@ function setDisplaySettings(state, display) {
             ...state,
 
             panelDisplay: "none",
+            paintActive: false,
+            canvasCursorCssHandeler: ""
         }
     }
 }
@@ -99,9 +103,11 @@ export const settingsReducer = (state = initialStates, action) => {
             return {
                 ...state,
 
+                canvasCursorCssHandeler: "cursor-paint",
                 paintColor: action.payload.color,
                 paintLineWidth: action.payload.width,
                 paintOpacity: action.payload.opacity,
+                paintActive: true
             }
         case "canvasDraw":
             return drawCanvas(
@@ -159,6 +165,7 @@ export const settingsReducer = (state = initialStates, action) => {
             return {
                 ...state,
 
+                canvasCursorCssHandeler: action.payload.cursorCss,
                 settingType: action.payload.settingType,
                 panelDisplay: "block"
             }
@@ -175,8 +182,6 @@ export const settingsReducer = (state = initialStates, action) => {
             return {
                 ...state,
 
-                mouseShape: "paintShape",
-
                 paintColor: action.payload.color,
                 paintLineWidth: action.payload.width,
             }
@@ -186,7 +191,6 @@ export const settingsReducer = (state = initialStates, action) => {
                 ...state,
 
                 isSelected: 1,
-                mouseShape: "selectShape",
 
                 selectX1: action.payload.x1,
                 selectY1: action.payload.y1,
@@ -197,8 +201,6 @@ export const settingsReducer = (state = initialStates, action) => {
         case "moveSettings":
             return {
                 ...state,
-
-                mouseShape: "moveShape",
 
                 moveX1: action.payload.x1,
                 moveY1: action.payload.y1,
@@ -268,6 +270,13 @@ export const settingsReducer = (state = initialStates, action) => {
                 textSize: action.payload.size,
                 textPositionX: action.payload.positionX,
                 textPositionY: action.payload.positionY,
+            }
+
+        case "canvasRef":
+            return {
+                ...state,
+
+                canvasRef: action.payload.canvasRef
             }
 
         default:

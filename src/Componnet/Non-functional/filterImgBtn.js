@@ -1,5 +1,4 @@
 import React from "react";
-import '../static/css/main.css';
 import { connect } from "react-redux";
 import setSettingType from "../Actions/settingDisplay";
 

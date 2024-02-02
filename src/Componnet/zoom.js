@@ -1,7 +1,6 @@
 // zoom.js
 
 import React from "react";
-import '../static/css/main.css'
 import { connect } from 'react-redux';
 import zoomValue from "../Actions/zoomValue";
 
@@ -61,9 +60,10 @@ class Zoom extends React.Component {
 
     render() {
         return (
-            <div className="zoomOptions">
+            <div className="zoomOptions d-flex">
                 <button
-                    onClick={this.zoomIncrease}>
+                    onClick={this.zoomIncrease}
+                    className="btn btn-light">
                     +
                 </button>
 
@@ -77,7 +77,8 @@ class Zoom extends React.Component {
                     step="5" />
 
                 <button
-                    onClick={this.zoomDecrease}>
+                    onClick={this.zoomDecrease}
+                    className="btn btn-light">
                     -
                 </button>
             </div>
